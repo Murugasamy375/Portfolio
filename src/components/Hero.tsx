@@ -72,7 +72,7 @@ export default function Hero() {
               <span>Let's Connect</span>
             </a>
             <a
-              href="https://drive.google.com/file/d/1C1ugTp_ygP8Um-FbWGIFgbJECo_KxxBp/view?usp=drivesdk"
+              href="https://drive.google.com/file/d/1qjEGAKadtbuAVADfxguQhbEv9PeFD_Lh/view?usp=drivesdk"
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3.5 rounded-xl text-center text-sm font-semibold text-gray-400 hover:text-white transition-colors duration-200 flex items-center justify-center space-x-2"
