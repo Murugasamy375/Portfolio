@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail, Instagram } from 'lucide-react';
-
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [time, setTime] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,154 +15,124 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // IST Clock
+  useEffect(() => {
+    const updateTime = () => {
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      };
+      const istString = new Date().toLocaleTimeString('en-US', options);
+      setTime(`${istString} IST`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Theme toggle
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    document.documentElement.setAttribute('data-theme', nextTheme);
+  };
+
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { num: '01', name: 'ABOUT', href: '#about' },
+    { num: '02', name: 'EXPERIENCE', href: '#experience' },
+    { num: '03', name: 'PROJECTS', href: '#projects' },
+    { num: '04', name: 'SKILLS', href: '#skills' },
+    { num: '05', name: 'ACHIEVEMENTS', href: '#achievements' },
+    { num: '06', name: 'CONTACT', href: '#contact' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-dark-bg/85 backdrop-blur-md border-b border-dark-border py-4 shadow-lg shadow-black/10' 
-        : 'bg-transparent py-6'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        {/* Logo */}
-        <a href="#home" className="flex items-center space-x-2">
-          <span className="font-display font-bold text-xl tracking-tight text-glow-gradient">
-            Murugasamy.P
-          </span>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[var(--bg)]/90 backdrop-blur-md border-b border-[var(--border)] py-3'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        {/* Brand Logo */}
+        <a
+          href="#home"
+          className="font-mono text-sm tracking-wider text-[var(--accent)] font-semibold hover:opacity-80 transition-opacity"
+        >
+          murugasamy.p <span className="opacity-40">// SDE & GenAI</span>
         </a>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center space-x-7">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-gray-400 hover:text-white font-medium text-sm transition-colors duration-200"
+              className="font-mono text-[0.72rem] tracking-wider text-[var(--text-sub)] hover:text-[var(--accent)] transition-colors duration-200"
             >
+              <span className="text-[var(--accent)] opacity-60 mr-1">{link.num}.</span>
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Socials / Button */}
-        <div className="hidden md:flex items-center space-x-4">
-          <a
-            href="https://github.com/Murugasamy375"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 text-gray-400 hover:text-glow-cyan hover:scale-105 transition-all duration-200"
-            aria-label="GitHub Profile"
+        {/* Right Info: Clock & Theme Switcher */}
+        <div className="hidden sm:flex items-center space-x-5">
+          <span className="font-mono text-xs text-[var(--text-muted)] tracking-wider">
+            {time}
+          </span>
+
+          <button
+            onClick={toggleTheme}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-[var(--border2)] text-[var(--text-sub)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all font-mono text-xs"
+            title="Toggle theme"
           >
-            <Github size={20} />
-          </a>
-          <a
-            href="https://linkedin.com/in/murugasamy-p-b99a8233a"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 text-gray-400 hover:text-glow-indigo hover:scale-105 transition-all duration-200"
-            aria-label="LinkedIn Profile"
-          >
-            <Linkedin size={20} />
-          </a>
-          <a
-            href="mailto:smuruga692@gmail.com"
-            className="p-2 text-gray-400 hover:text-glow-violet hover:scale-105 transition-all duration-200"
-            aria-label="Email Me"
-          >
-            <Mail size={20} />
-          </a>
-          <a
-            href="https://www.instagram.com/broken__piece07?igsh=MTl5NHIxcWw0cHpoNQ=="
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 text-gray-400 hover:text-rose-400 hover:scale-105 transition-all duration-200"
-            aria-label="Instagram Profile"
-          >
-            <Instagram size={20} />
-          </a>
-          <a
-            href="#contact"
-            className="ml-2 px-5 py-2 rounded-full text-xs font-semibold text-white bg-linear-to-r from-glow-cyan to-glow-indigo hover:opacity-90 hover:scale-105 shadow-md shadow-glow-cyan/25 transition-all duration-200"
-          >
-            Hire Me
-          </a>
+            {theme === 'dark' ? <Sun size={13} /> : <Moon size={13} />}
+            <span>{theme.toUpperCase()}</span>
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-gray-400 hover:text-white transition-colors duration-200"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Panel */}
-      <div className={`md:hidden absolute top-full left-0 w-full glass-panel border-t border-dark-border py-6 px-8 flex flex-col space-y-4 shadow-2xl transition-all duration-300 ease-in-out ${
-        isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-4 invisible'
-      }`}>
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.href}
-            onClick={() => setIsOpen(false)}
-            className="text-gray-300 hover:text-glow-cyan text-base font-medium transition-colors duration-200 py-1"
+        {/* Mobile Toggle */}
+        <div className="flex sm:hidden items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded border border-[var(--border2)] text-[var(--text-sub)] hover:text-[var(--accent)]"
           >
-            {link.name}
-          </a>
-        ))}
-        <div className="flex items-center space-x-6 pt-4 border-t border-gray-800">
-          <a
-            href="https://github.com/Murugasamy375"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-glow-cyan transition-colors"
-            aria-label="GitHub Profile"
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-1.5 text-[var(--text-sub)] hover:text-[var(--accent)]"
+            aria-label="Toggle menu"
           >
-            <Github size={20} />
-          </a>
-          <a
-            href="https://linkedin.com/in/murugasamy-p-b99a8233a"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-glow-indigo transition-colors"
-            aria-label="LinkedIn Profile"
-          >
-            <Linkedin size={20} />
-          </a>
-          <a
-            href="mailto:smuruga692@gmail.com"
-            className="text-gray-400 hover:text-glow-violet transition-colors"
-            aria-label="Email Me"
-          >
-            <Mail size={20} />
-          </a>
-          <a
-            href="https://www.instagram.com/broken__piece07?igsh=MTl5NHIxcWw0cHpoNQ=="
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-rose-400 transition-colors"
-            aria-label="Instagram Profile"
-          >
-            <Instagram size={20} />
-          </a>
-          <a
-            href="#contact"
-            onClick={() => setIsOpen(false)}
-            className="flex-1 text-center py-2 rounded-full text-xs font-semibold text-white bg-linear-to-r from-glow-cyan to-glow-indigo"
-          >
-            Hire Me
-          </a>
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer */}
+      {isOpen && (
+        <div className="lg:hidden bg-[var(--bg2)] border-b border-[var(--border)] py-6 px-8 flex flex-col space-y-4 shadow-xl font-mono text-xs">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="text-[var(--text-sub)] hover:text-[var(--accent)] py-1"
+            >
+              <span className="text-[var(--accent)] mr-2">{link.num}.</span>
+              {link.name}
+            </a>
+          ))}
+          <div className="pt-3 border-t border-[var(--border)] text-[var(--text-muted)]">
+            <span>{time}</span>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

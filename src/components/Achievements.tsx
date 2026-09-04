@@ -1,148 +1,161 @@
-import { Award, GraduationCap, Calendar, ShieldCheck, Trophy } from 'lucide-react';
-
-interface Certification {
-  title: string;
-  provider: string;
-  score?: string;
-  icon: React.ReactNode;
-}
-
-interface Achievement {
-  title: string;
-  metric: string;
-  detail: string;
-  icon: React.ReactNode;
-}
+import { Award, GraduationCap, CheckCircle2, Flame, Trophy, ExternalLink } from 'lucide-react';
 
 export default function Achievements() {
-  const achievements: Achievement[] = [
+  const achievements = [
     {
-      title: 'Competitive Programming',
-      metric: '2,300+ Solved Problems',
-      detail: 'Solved data structures and algorithms challenges across LeetCode, Skillrack, and GeeksforGeeks.',
-      icon: <Trophy className="text-glow-cyan" size={20} />
+      title: '2300+ DSA Problems Solved',
+      platform: 'LeetCode, Skillrack, GeeksforGeeks',
+      desc: 'Extensive problem solving in Data Structures and Algorithms covering Dynamic Programming, Graphs, Trees, Arrays, and Advanced Algorithms.',
+      link: 'https://leetcode.com/u/murugasamy12/',
+      icon: <Trophy className="text-[var(--accent)]" size={20} />,
     },
     {
-      title: 'LeetCode consistency',
-      metric: '100 Days Streak',
-      detail: 'Earned active global consistency badge with a LeetCode Global Rank of 189,353.',
-      icon: <Calendar className="text-glow-indigo" size={20} />
+      title: 'LeetCode Global Rank 189,353',
+      platform: 'LeetCode Profile',
+      desc: '500+ Problems Solved. Earned 100 Days of Consistency badge with active participation in weekly DSA challenges.',
+      link: 'https://leetcode.com/u/murugasamy12/',
+      icon: <Flame className="text-[var(--accent)]" size={20} />,
     },
     {
-      title: 'GeeksforGeeks Contest',
-      metric: '5th Institutional Rank',
-      detail: 'Secured top positions in regional and institutional ranking dashboards.',
-      icon: <Award className="text-glow-violet" size={20} />
-    }
+      title: 'Rank 5th Institutionally',
+      platform: 'GeeksforGeeks',
+      desc: 'Secured 5th position among institutional peers in competitive coding challenges.',
+      link: null,
+      icon: <Award className="text-[var(--accent)]" size={20} />,
+    },
   ];
 
-  const certifications: Certification[] = [
+  const education = [
     {
-      title: 'Java Full Stack Certification',
-      provider: 'Wipro Talent Next',
-      icon: <ShieldCheck className="text-glow-cyan" size={18} />
+      institution: 'St. Joseph’s College of Engineering',
+      degree: 'Bachelor of Engineering – Computer Science and Engineering',
+      cgpa: 'CGPA: 8.23 / 10',
+      location: 'Chennai, Tamil Nadu',
+      period: 'Nov 2022 – May 2026',
     },
-    {
-      title: 'Programming Using C',
-      provider: 'NPTEL Certification',
-      score: 'Score: 76%',
-      icon: <GraduationCap className="text-glow-indigo" size={18} />
-    },
-    {
-      title: 'Software Conceptual Design',
-      provider: 'NPTEL Certification',
-      score: 'Score: 65%',
-      icon: <GraduationCap className="text-glow-violet" size={18} />
-    },
-    {
-      title: 'Data Structures and Algorithms Using Java',
-      provider: 'Infosys Springboard',
-      icon: <ShieldCheck className="text-glow-cyan" size={18} />
-    }
+  ];
+
+  const certifications = [
+    { name: 'Java Full Stack Development', provider: 'Wipro Talent Next' },
+    { name: 'Python for Data Science', provider: 'NPTEL – Elite (Score: 72%)' },
+    { name: 'Software Conceptual Design', provider: 'NPTEL (Score: 65%)' },
+    { name: 'Data Structures and Algorithms Using Java', provider: 'Infosys Springboard' },
   ];
 
   return (
-    <section id="achievements" className="py-20 bg-dark-bg/40 relative">
-      <div className="absolute top-1/4 left-1/10 w-72 h-72 bg-glow-cyan/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-white tracking-tight">
-            Achievements & Certifications
-          </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-glow-cyan to-glow-indigo mx-auto mt-4 rounded-full"></div>
-          <p className="text-gray-400 text-sm md:text-base mt-4">
-            Highlights of my competitive coding milestones and certified learning paths.
-          </p>
+    <section id="achievements" className="py-20 border-b border-[var(--border)]">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        {/* Section Label */}
+        <div className="section-label">
+          <span>05 // ACHIEVEMENTS & EDUCATION</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Achievements Col */}
-          <div className="space-y-6 text-left">
-            <h3 className="font-display font-bold text-2xl text-white flex items-center space-x-2">
-              <Trophy className="text-glow-cyan" size={24} />
-              <span>Coding Milestones</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column: Achievements & Certifications */}
+          <div className="lg:col-span-7 space-y-8">
+            <h3 className="font-mono text-xs text-[var(--accent)] uppercase tracking-wider font-semibold">
+              Competitive Programming & Honors
             </h3>
-            
+
             <div className="space-y-4">
-              {achievements.map((ach) => (
+              {achievements.map((item, idx) => (
                 <div
-                  key={ach.title}
-                  className="glass-panel rounded-2xl p-5 border border-white/5 flex items-start space-x-4 hover:border-glow-cyan/30 glass-panel-hover"
+                  key={idx}
+                  className="p-5 rounded-lg border border-[var(--border)] bg-[var(--bg2)]/70 hover:border-[var(--accent-border)] transition-colors flex items-start gap-4 group"
                 >
-                  <div className="p-3 rounded-xl bg-white/5 border border-white/5 mt-0.5">
-                    {ach.icon}
+                  <div className="p-2.5 rounded border border-[var(--accent-border)] bg-[var(--accent-dim)] flex-shrink-0">
+                    {item.icon}
                   </div>
-                  <div className="space-y-1">
-                    <span className="text-xs font-mono font-medium text-glow-cyan uppercase tracking-wider">
-                      {ach.title}
-                    </span>
-                    <h4 className="text-lg font-bold text-white leading-snug">
-                      {ach.metric}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                      {ach.detail}
+                  <div className="space-y-1 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-display font-bold text-lg text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+                          {item.title}
+                        </h4>
+                        <span className="font-mono text-[0.62rem] text-[var(--accent)] px-2 py-0.5 rounded border border-[var(--accent-border)]">
+                          {item.platform}
+                        </span>
+                      </div>
+
+                      {item.link && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-xs text-[var(--accent)] hover:underline inline-flex items-center gap-1 flex-shrink-0"
+                          title="View LeetCode Profile"
+                        >
+                          <span>Profile</span>
+                          <ExternalLink size={12} />
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-xs sm:text-sm text-[var(--text-sub)] leading-relaxed font-sans">
+                      {item.desc}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
+
+            {/* Certifications Block */}
+            <div className="pt-4 space-y-4">
+              <h3 className="font-mono text-xs text-[var(--accent)] uppercase tracking-wider font-semibold">
+                Certifications
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {certifications.map((cert, cIdx) => (
+                  <div
+                    key={cIdx}
+                    className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg)] flex items-start gap-3 hover:border-[var(--accent-border)] transition-colors"
+                  >
+                    <CheckCircle2 size={16} className="text-[var(--accent)] mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h5 className="font-sans text-xs font-semibold text-[var(--text)]">
+                        {cert.name}
+                      </h5>
+                      <span className="font-mono text-[0.62rem] text-[var(--text-muted)] block">
+                        {cert.provider}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Certifications Col */}
-          <div className="space-y-6 text-left">
-            <h3 className="font-display font-bold text-2xl text-white flex items-center space-x-2">
-              <GraduationCap className="text-glow-indigo" size={24} />
-              <span>Professional Credentials</span>
+          {/* Right Column: Education */}
+          <div className="lg:col-span-5 space-y-6">
+            <h3 className="font-mono text-xs text-[var(--accent)] uppercase tracking-wider font-semibold">
+              Education
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {certifications.map((cert) => (
-                <div
-                  key={cert.title}
-                  className="glass-panel rounded-2xl p-5 border border-white/5 flex flex-col justify-between hover:border-glow-indigo/30 glass-panel-hover min-h-[140px]"
-                >
-                  <div className="space-y-3">
-                    <div className="p-2.5 rounded-lg bg-white/5 border border-white/5 w-fit">
-                      {cert.icon}
-                    </div>
-                    <h4 className="text-sm sm:text-base font-bold text-white leading-snug">
-                      {cert.title}
-                    </h4>
-                  </div>
-                  
-                  <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-4 text-[10px] sm:text-xs font-mono font-medium text-gray-400">
-                    <span>{cert.provider}</span>
-                    {cert.score && (
-                      <span className="text-glow-indigo bg-glow-indigo/5 px-2 py-0.5 rounded-sm border border-glow-indigo/10">
-                        {cert.score}
-                      </span>
-                    )}
-                  </div>
+            {education.map((edu, eIdx) => (
+              <div
+                key={eIdx}
+                className="p-6 rounded-lg border border-[var(--accent-border)] bg-[var(--accent-dim)] space-y-4"
+              >
+                <div className="flex items-center gap-2 text-[var(--accent)] font-mono text-xs font-semibold">
+                  <GraduationCap size={18} />
+                  <span>{edu.period}</span>
                 </div>
-              ))}
-            </div>
+
+                <div className="space-y-1 font-sans">
+                  <h4 className="font-display font-bold text-xl text-[var(--text)]">
+                    {edu.institution}
+                  </h4>
+                  <p className="text-sm text-[var(--text-sub)]">
+                    {edu.degree}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between pt-3 border-t border-[var(--border)] font-mono text-xs">
+                  <span className="text-[var(--accent)] font-bold">{edu.cgpa}</span>
+                  <span className="text-[var(--text-muted)]">{edu.location}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
