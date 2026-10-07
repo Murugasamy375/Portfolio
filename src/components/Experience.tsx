@@ -6,7 +6,7 @@ export default function Experience() {
       role: 'Software Developer Trainee Intern',
       company: 'HashedIn by Deloitte',
       location: 'On-Site',
-      period: 'Apr 2026 – June 2026',
+      period: 'Apr 2026 – Sept 2026',
       highlights: [
         'Architected and deployed RESTful backend microservices in Spring Boot and FastAPI using a 3-tier, object-oriented architecture, applying SOLID principles within Agile/Scrum sprints to improve maintainability and scalability.',
         'Secured high-traffic endpoints by implementing API rate limiting and input validation, containerized services with Docker, and integrated agentic AI/LLM-based components into production-style applications.',
