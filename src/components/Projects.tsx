@@ -3,6 +3,34 @@ import { Bot, Code2, ExternalLink, Github } from 'lucide-react';
 const projects = [
   {
     num: '01',
+    title: 'CodeHub – Collaborative AI Coding Platform',
+    year: '2026',
+    icon: <Code2 className="text-[var(--accent)]" size={22} />,
+    desc: 'A collaborative coding platform where admins publish daily programming challenges and members solve, submit, and discuss problems with AI-assisted code evaluation and progress tracking.',
+    highlights: [
+      'Built a full-stack coding platform using React, Vite, FastAPI, Supabase, and PostgreSQL with role-based authentication for admins and members.',
+      'Implemented an online coding workspace with problem statements, test cases, code submission, notes, comments, daily challenges, streak tracking, and progress monitoring.',
+      'Designed AI-assisted evaluation workflows for submitted solutions and voice-based problem responses, enabling automated feedback alongside admin evaluation.',
+      'Implemented a daily challenge workflow where submissions contribute to streak progress only after completing the required coding, notes, and voice activities.',
+    ],
+    tags: [
+      'React',
+      'Vite',
+      'FastAPI',
+      'Python',
+      'Supabase',
+      'PostgreSQL',
+      'AI Evaluation',
+      'REST API',
+      'Authentication',
+    ],
+    liveUrl: 'https://code-hub-black.vercel.app/',
+    githubUrl: 'https://github.com/Murugasamy375',
+    isFeatured: true,
+  },
+
+  {
+    num: '02',
     title: 'AI Interviewer & ATS Platform',
     year: '2026',
     icon: <Bot className="text-[var(--accent)]" size={22} />,
@@ -30,7 +58,7 @@ const projects = [
   },
 
   {
-    num: '02',
+    num: '03',
     title: 'AI Code Generator from Requirement Documents',
     year: '2026',
     icon: <Code2 className="text-[var(--accent)]" size={22} />,
@@ -50,34 +78,6 @@ const projects = [
       'JWT Auth',
       'RAG',
       'Pydantic',
-    ],
-    liveUrl: null,
-    githubUrl: 'https://github.com/Murugasamy375',
-    isFeatured: true,
-  },
-
-  {
-    num: '03',
-    title: 'CodeHub – Collaborative AI Coding Platform',
-    year: '2026',
-    icon: <Code2 className="text-[var(--accent)]" size={22} />,
-    desc: 'A collaborative coding platform where admins publish daily programming challenges and members solve, submit, and discuss problems with AI-assisted code evaluation and progress tracking.',
-    highlights: [
-      'Built a full-stack coding platform using React, Vite, FastAPI, Supabase, and PostgreSQL with role-based authentication for admins and members.',
-      'Implemented an online coding workspace with problem statements, test cases, code submission, notes, comments, daily challenges, streak tracking, and progress monitoring.',
-      'Designed AI-assisted evaluation workflows for submitted solutions and voice-based problem responses, enabling automated feedback alongside admin evaluation.',
-      'Implemented a daily challenge workflow where submissions contribute to streak progress only after completing the required coding, notes, and voice activities.',
-    ],
-    tags: [
-      'React',
-      'Vite',
-      'FastAPI',
-      'Python',
-      'Supabase',
-      'PostgreSQL',
-      'AI Evaluation',
-      'REST API',
-      'Authentication',
     ],
     liveUrl: null,
     githubUrl: 'https://github.com/Murugasamy375',
